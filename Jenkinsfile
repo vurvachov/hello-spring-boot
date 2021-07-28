@@ -28,9 +28,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo '\033[34mEjecutando\033[0m \033[33mla\033[0m \033[35maplicación\033[0m'
-                sh '''./gradlew bootRun --args='--server.port=5050' '''
-                /*sh '''docker-compose build
-                docker-compose up -d*/
+                /*sh '''./gradlew bootRun --args='--server.port=5050' '''*/
+                /*sh '''docker-compose build*/
+                docker-compose up -d
             }
         }
     }
