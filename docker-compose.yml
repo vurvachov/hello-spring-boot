@@ -1,7 +1,8 @@
 version: '3'
 services:
   web:
-    image: alpine-jre
+#    image: alpine-jre
+    image: hello-spring:latest
     build: .
     ports:
       - "5000:8080"
