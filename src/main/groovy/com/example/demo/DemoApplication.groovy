@@ -23,5 +23,4 @@ class DemoApplication {
 	public String gradle(@RequestParam(value = "name", defaultValue = "Gradle:1.0.0") String name) {
 		return String.format("Este proyecto es de:  %s", name);
 	}
-
 }
