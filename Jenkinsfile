@@ -12,7 +12,7 @@ pipeline {
 
                 /*Aplicamos este cambio para generar el jar con Gradle*/
 
-                echo '\033[34mConstruyendo\033[0m \033[33mla\033[0m \033[35mimagen\033[0m'
+                echo '\033[34mConstruyendo\033[0m \033[35mimagen\033[0m'
                 sh '''./gradlew assemble'''
                 /*docker-compose build'''*/
             }
