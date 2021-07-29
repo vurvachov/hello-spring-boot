@@ -8,7 +8,7 @@ pipeline {
             steps {
 
                 sh '''docker-compose build
-                docker image tag alpine-jre:latest hello-gradle:MAIN-1.0.${BUILD_NUMBER}'''
+                docker image tag hello-spring:latest hello-spring:MAIN-1.0.${BUILD_NUMBER}'''
 
                 /*Aplicamos este cambio para generar el jar con Gradle*/
 
