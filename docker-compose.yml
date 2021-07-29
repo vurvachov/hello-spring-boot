@@ -5,4 +5,4 @@ services:
     image: hello-spring:latest
     build: .
     ports:
-      - "5050:5050"
+      - "5555:5555"
