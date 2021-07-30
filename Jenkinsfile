@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage('gitlab') {
+          steps {
+             echo 'Notify GitLab'
+             updateGitlabCommitStatus name: 'build', state: 'pending'
+             updateGitlabCommitStatus name: 'build', state: 'success'
+          }
+       }
+
         stage('Deploy') {
             steps {
                 echo '\033[34mEjecutando\033[0m \033[33mla\033[0m \033[35maplicación\033[0m'
