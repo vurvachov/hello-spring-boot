@@ -9,6 +9,7 @@ pipeline {
                 /*sh '''docker-compose build
                 docker image tag hello-spring:latest hello-spring:MAIN-1.0.${BUILD_NUMBER}'''*/
 
+
                 /*Aplicamos este cambio para generar el jar con Gradle*/
 
                 echo '\033[34mConstruyendo\033[0m \033[35mimagen\033[0m'
