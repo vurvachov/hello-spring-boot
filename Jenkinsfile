@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-
                 /*sh '''docker-compose build
                 docker image tag hello-spring:latest hello-spring:MAIN-1.0.${BUILD_NUMBER}'''*/
 
