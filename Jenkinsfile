@@ -6,6 +6,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sshagent(credentials: ['jenkins']) {
+                    sh '''
+                    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+                    ssh-keyscan -t rsa,http://10.250.11.3:8929 >> ~/.ssh/jenkins
+                    ssh vurvachov@10.250.11.3:8929 ..'''
+                }
+
                 /*sh '''docker-compose build
                 docker image tag hello-spring:latest hello-spring:MAIN-1.0.${BUILD_NUMBER}'''*/
 
