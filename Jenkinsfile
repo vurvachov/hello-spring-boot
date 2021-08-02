@@ -7,10 +7,15 @@ pipeline {
             steps {
                 
                 echo 'Realizando Pruebas...'
+                
                 withGradle{
                      sh './gradlew clean test'        
-                } 
-                junit '**/test/TEST-com.example.demo.DemoApplicationTests.xml' 
+                }             
+            }
+            post{
+                always{
+                    junit '**/test/TEST-com.example.demo.DemoApplicationTests.xml'
+                }                
             }
         }
 
