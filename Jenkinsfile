@@ -40,5 +40,17 @@ pipeline {
                 docker-compose up -d'''*/
             }
         }
+
+        stage( 'Integración' ) {
+            junit ' resultados de prueba.xml '
+        }
+
+        junit ' more-test-results.xml '
+
+        stage( 'Ignorado' ) {
+            withChecks ( 'Pruebas de integración' ) {
+             ' yet-more-test-results.xml '
+            }
+        }
     }
 }
