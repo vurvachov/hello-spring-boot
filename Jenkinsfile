@@ -7,7 +7,7 @@ pipeline {
             steps {
                 
                 echo 'Realizando Pruebas...'
-                withGradle(){
+                withGradle{
                      sh './gradlew clean test'        
                 } 
                 junit '**/test/TEST-com.example.demo.DemoApplicationTests.xml' 
