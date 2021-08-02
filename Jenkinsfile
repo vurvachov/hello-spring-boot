@@ -20,5 +20,9 @@ pipeline {
                 echo 'Deploying...'
             }
         }
+
+        stage ( ' Integración ' ) {
+            junit '**/test/*.xml'
+        }
     }
 }
