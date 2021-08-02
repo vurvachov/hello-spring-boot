@@ -5,7 +5,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh './gradlew test'    
+                sh './gradlew test'   
+                junit '**/test/*.xml' 
             }
         }
 
@@ -19,10 +20,6 @@ pipeline {
             steps {
                 echo 'Deploying...'
             }
-        }
-
-        stage ( ' Integración ' ) {
-            junit '**/test/*.xml'
         }
     }
 }
