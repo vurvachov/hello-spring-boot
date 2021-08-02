@@ -42,8 +42,10 @@ pipeline {
             }
         }
 
-        stage( 'Integración' ) {
-            junit ' resultados de prueba.xml '
+        stage('Test') {
+            steps{
+                junit '**/build/test-results/test/*.xml'
+            }    
         }
     }
 }
