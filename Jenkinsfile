@@ -2,23 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+
+        stage('Pruebas') {
             steps {
-                echo 'Testing...'
-                sh './gradlew clean test'   
+                
+                echo 'Realizando Pruebas...'
+                withGradle(){
+                     sh './gradlew clean test'        
+                } 
                 junit '**/test/TEST-com.example.demo.DemoApplicationTests.xml' 
             }
         }
 
-        stage('Build') {
+        stage('Construcción') {
             steps{
-                echo 'Building...'
+                echo 'Construyendo...'
             }    
         }
 
-        stage('Deploy') {
+        stage('Despliege') {
             steps {
-                echo 'Deploying...'
+                echo 'Desplegando...'
             }
         }
     }
