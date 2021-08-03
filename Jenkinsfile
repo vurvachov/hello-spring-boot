@@ -85,13 +85,11 @@ pipeline {
 
         stage('SonarQube analysis') {
             steps{
-                withSonarQubeEnv() { // Will pick the global server connection you have configured
-                withGradle{
-                    sh './gradlew sonarqube'
-                }              
+                withSonarQubeEnv('My SonarQube Server', envOnly: true) { // Will pick the global server connection you have configured
+                    println ${env.SONAR_AUTH_TOKEN} 
+                    sh './gradlew sonarqube'           
+                } 
             }
-           
-    }
-  }
+        }
     }
 }
