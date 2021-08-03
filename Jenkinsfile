@@ -53,7 +53,8 @@ pipeline {
         stage('Seguridad') {
             steps{
                 echo 'Comprobando seguridad...'
-                sh 'trivy hello-spring-testing:latest'
+                //sh 'trivy hello-spring-testing:latest'
+                sh 'trivy image --format=json --output=trivy-image.json hello-spring-testing:latest'
             }
         }
 
