@@ -73,6 +73,7 @@ pipeline {
         stage('Despliege') {
             steps {
                 echo 'Desplegando...'
+                sh 'docker-compose up -d'
             }
         }
     }
