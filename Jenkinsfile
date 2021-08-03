@@ -28,12 +28,8 @@ pipeline {
                 withGradle{
                     sh './gradlew check'
                 }
-            }
 
-            post {
-                always{
-                    pmd canRunOnFailed: true, pattern: '**/pmd/*.xml'
-                }
+                pmdParser pattern: '**/pmd/*.xml'
             }
         }
 
