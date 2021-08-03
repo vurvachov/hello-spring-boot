@@ -23,7 +23,7 @@ pipeline {
         stage('QA'){
             steps{
 
-                echo 'Realizando Chenks...'
+                echo 'Realizando Validacion...'
 
                 withGradle{
                     sh './gradlew check'
@@ -32,7 +32,7 @@ pipeline {
 
             post {
                 always{
-                    pmdParser pattern: '**/pmd/*.xml'
+                    pmd canRunOnFailed: true, pattern: '**/pmd/*.xml'
                 }
             }
         }
