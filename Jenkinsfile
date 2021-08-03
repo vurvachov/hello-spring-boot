@@ -20,6 +20,23 @@ pipeline {
             }
         }
 
+        stage('QA'){
+            steps{
+
+                echo 'Realizando Chenks...'
+
+                withGradle{
+                    sh './gradlew check'
+                }
+            }
+
+            post {
+                always{
+                    cmd '**/pmd/*.xml'
+                }
+            }
+        }
+
         stage('Construcción') {
             steps{
                 echo 'Construyendo...'

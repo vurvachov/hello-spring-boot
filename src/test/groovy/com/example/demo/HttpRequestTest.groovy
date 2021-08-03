@@ -27,4 +27,10 @@ class HttpRequestTest {
         assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/gradle?name=Gradle:1.0.0", String.class))
         .isNotBlank()
     }
+
+    @Test
+    public void canVieWInfo() throws Exception {
+        assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/gradle?name=Gradle:1.0.0", String.class))
+                .isEqualTo("Este proyecto es de:  Gradle:1.0.0")
+    }
 }
