@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
 
@@ -34,7 +35,8 @@ pipeline {
                 always{
                     recordIssues(
                             tools: [
-                                    pmdParser(pattern: '**/pmd/*.xml')
+                                    pmdParser(pattern: '**/pmd/*.xml'),
+                                    spotBugs(pattern: '**/spotbugs/*.xml')
                             ]
                     )
                 }
