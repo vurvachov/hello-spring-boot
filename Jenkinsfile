@@ -46,6 +46,7 @@ pipeline {
         stage('Construcción') {
             steps{
                 echo 'Construyendo...'
+                sh 'docker-compose build'
             }    
         }
 

@@ -1,7 +1,7 @@
 version: '3'
 services:
-  web:
-    image: hello-spring:latest
+  hello:
+    image: hello-spring-testing:latest
     build: .
     ports:
-      - "5555:5555"
+      - "8081:8080"
