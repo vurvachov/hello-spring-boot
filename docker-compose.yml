@@ -19,14 +19,22 @@ services:
       - sonarqube_logs:/opt/sonarqube/logs
     ports:
       - "9091:9000"
+    networks:
+      - sonarnet
   db:
     image: postgres:12
+    networks:
+      - sonarnet
     environment:
       POSTGRES_USER: sonar
       POSTGRES_PASSWORD: sonar
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
+
+networks:
+  sonarnet:
+    driver: bridge
 
 volumes:
   sonarqube_data:
