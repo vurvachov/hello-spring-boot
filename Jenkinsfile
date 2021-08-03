@@ -62,7 +62,7 @@ pipeline {
             post{
                 always{
                     recordIssues(
-                            tool: [trivy(pattern: 'trivy-image.json')],
+                            tool: trivy(pattern: 'trivy-image.json'),
                             enabledForFailure: true,
                             aggregatingResults: true
                     )
