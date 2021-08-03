@@ -29,7 +29,15 @@ pipeline {
                     sh './gradlew check'
                 }
 
-                pmdParser pattern: '**/pmd/*.xml'
+                post{
+                    always{
+                        recordIssues(
+                                tools: [
+                                        pmdParser(pattern: '**/pmd/*.xml')
+                                ]
+                        )
+                    }
+                }
             }
         }
 
