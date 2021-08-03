@@ -21,4 +21,10 @@ class HttpRequestTest {
         assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/suma?a=10&b=1", String.class))
         .isEqualTo("11.0")
     }
+
+    @Test
+    public void canViewInfo() throws Exception {
+        assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/gradle?name=Gradle:1.0.0", String.class))
+        .isNotBlank()
+    }
 }

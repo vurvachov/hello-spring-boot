@@ -10,13 +10,10 @@ class SmokeTest {
 
     @Autowired
     private HomeController controller;
-    private DemoApplication pruebaSuma;
 
     @Test
     void contextLoads() {
         assertThat(controller).isNotNull()
-
-        assertThat(pruebaSuma.suma(a,b)).isEqualTo(10)
     }
 
 
