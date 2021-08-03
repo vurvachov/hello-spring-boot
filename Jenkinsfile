@@ -77,12 +77,6 @@ pipeline {
             }
         }
 
-        stage('SCM'){
-            steps {
-                git 'https://github.com/foo/bar.git'
-            }
-        }
-
         stage('SonarQube analysis') {
             steps{
                 withSonarQubeEnv('My SonarQube Server') { // Will pick the global server connection you have configured
