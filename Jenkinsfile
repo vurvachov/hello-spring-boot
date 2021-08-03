@@ -36,7 +36,7 @@ pipeline {
                     recordIssues(
                             tools: [
                                     pmdParser(pattern: '**/pmd/*.xml'),
-                                    spotBugs(pattern: '**/spotbugs/*.xml')
+                                    spotBugs(useRankAsPriority: true, pattern: '**/spotbugs/*.xml')
                             ]
                     )
                 }
