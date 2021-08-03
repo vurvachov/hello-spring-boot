@@ -56,6 +56,16 @@ pipeline {
                 //sh 'trivy hello-spring-testing:latest'
                 sh 'trivy image --format=json --output=trivy-image.json hello-spring-testing:latest'
             }
+
+            post{
+                always{
+                    recordIssues(
+                            enabledForFailure: true,
+                            aggregatingResults: true,
+                            tool: [trivy(pattern: 'trivy-image.json')]
+                    )
+                }
+            }
         }
 
         stage('Despliege') {
