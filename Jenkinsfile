@@ -1,6 +1,9 @@
 #!/usr/bin/env groovy
 pipeline {
     agent any
+    options {
+        ansiColor('xterm')
+    }
 
     stages {
 
@@ -53,16 +56,15 @@ pipeline {
         stage('Seguridad') {
             steps{
                 echo 'Comprobando seguridad...'
-                //sh 'trivy hello-spring-testing:latest'
                 sh 'trivy image --format=json --output=trivy-image.json hello-spring-testing:latest'
             }
 
             post{
                 always{
                     recordIssues(
+                            tool: [trivy(pattern: 'trivy-image.json')],
                             enabledForFailure: true,
-                            aggregatingResults: true,
-                            tool: [trivy(pattern: 'trivy-image.json')]
+                            aggregatingResult: true
                     )
                 }
             }
