@@ -32,7 +32,7 @@ pipeline {
 
             post {
                 always{
-                    pmd pattern: '**/pmd/*.xml'
+                    pmdParser pattern: '**/pmd/*.xml'
                 }
             }
         }
