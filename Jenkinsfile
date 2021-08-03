@@ -50,6 +50,13 @@ pipeline {
             }    
         }
 
+        stage('Seguridad') {
+            steps{
+                echo 'Comprobando seguridad...'
+                sh 'trivy hello-spring-testing:latest'
+            }
+        }
+
         stage('Despliege') {
             steps {
                 echo 'Desplegando...'
