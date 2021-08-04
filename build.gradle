@@ -46,3 +46,8 @@ sonarqube {
     property "sonar.projectKey", "vurvachov_hello-spring-boot_AXsQCahoMh_MmEiNKdk5"
   }
 }
+
+pitest {
+    junit5PluginVersion = '0.12'
+    outputFormats = ['XML', 'HTML']
+}
