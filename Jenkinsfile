@@ -44,8 +44,7 @@ pipeline {
                 always{
                     recordIssues(
                         enabledForFailure: true, 
-                        tool: pit(pattern: '**/pitest/**'),
-                        filters: [includeFile('*.xml'), includeFile('*.html')]
+                        tool: pit(pattern: '**/pitest/*.xml')
                     )
                 }
             }
