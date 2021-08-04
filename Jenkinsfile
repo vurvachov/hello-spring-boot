@@ -49,7 +49,7 @@ pipeline {
             }
         }
 
-        /*stage('QA'){
+        stage('QA'){
             steps{
 
                 echo 'Realizando Validacion...'
@@ -72,7 +72,7 @@ pipeline {
             }
         }
 
-        stage('Construcción') {
+        /*stage('Construcción') {
             steps{
                 echo 'Construyendo...'
                 sh 'docker-compose build'
