@@ -48,7 +48,8 @@ pipeline {
                             tools: [
                                     pmdParser(pattern: '**/pmd/*.xml'),
                                     spotBugs(useRankAsPriority: true, pattern: '**/spotbugs/*.xml')
-                            ]
+                            ],
+                            enabledForFailure: true
                     )
                 }
             }

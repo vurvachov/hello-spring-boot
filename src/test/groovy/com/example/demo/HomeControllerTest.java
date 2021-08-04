@@ -6,8 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HomeControllerTest {
@@ -19,7 +18,7 @@ class HomeControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    void hola() {
+    public void hola() throws Exception{
         assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/hola", String.class))
                 .isEqualTo("Buenos dias!");
     }
