@@ -43,7 +43,7 @@ pipeline {
             post{
                 always{
                     recordIssues(
-                        tool: pit(pattern: '**/pitest/*/*.xml'),(pattern: '**/pitest/*/*.html')
+                        tool: pit(pattern: '**/pitest/*/*.xml', '**/pitest/*/*.html')
                     )
                 }
             }
