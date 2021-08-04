@@ -24,21 +24,32 @@ pipeline {
             }
         }
 
-        stage('SonarQube analysis') {
+        /*stage('SonarQube analysis') {
             steps{
                 withSonarQubeEnv("sonarqube") {
                     sh "./gradlew sonarqube"
                 }
             }       
-        }
+        }*/
 
-        stage('Probando Pitest'){
+        stage('Lanzando Pitest'){
             steps{
-                sh './gradlew pitest'
+                withGradle{
+                    sh './gradlew pitest'
+                }
+                
+            }
+
+            post{
+                always{
+                    recordIssues(
+                        tool: pit(pattern: '**/pitest/*/*.xml'),(pattern: '**/pitest/*/*.html')
+                    )
+                }
             }
         }
 
-        stage('QA'){
+        /*stage('QA'){
             steps{
 
                 echo 'Realizando Validacion...'
@@ -90,6 +101,6 @@ pipeline {
                 echo 'Desplegando...'
                 sh 'docker-compose up -d'
             }
-        }
+        }*/
     }
 }
