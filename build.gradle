@@ -38,3 +38,9 @@ jacocoTestReport{
 spotbugs{
 	ignoreFailures = true
 }
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "vurvachov_hello-spring-boot_AXsQCahoMh_MmEiNKdk5"
+  }
+}

@@ -77,10 +77,19 @@ pipeline {
             }
         }
 
+        stage('SCM') {
+            steps {
+                checkout scm
+            }
+            
+        }
+
         stage('SonarQube analysis') {
             steps{
-                sh './gradlew sonarqube'
-            }
+                withSonarQubeEnv() {
+                    sh "./gradlew sonarqube"
+                }
+            }       
         }
     }
 }
