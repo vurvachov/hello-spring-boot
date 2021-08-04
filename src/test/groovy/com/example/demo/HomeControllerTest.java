@@ -12,14 +12,14 @@ import static org.assertj.core.api.Assertions.*;
 class HomeControllerTest {
 
     @LocalServerPort
-    private int port;
+    private static int port;
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private static TestRestTemplate restTemplate;
 
     @Test
     public void hola() throws Exception{
-        assertThat(this.restTemplate.getForObject("http://localhost:"+port+"/hola", String.class))
+        assertThat(restTemplate.getForObject("http://localhost:"+port+"/hola", String.class))
                 .isEqualTo("Buenos dias!");
     }
 }
