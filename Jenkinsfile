@@ -24,6 +24,14 @@ pipeline {
             }
         }
 
+        stage('SonarQube analysis') {
+            steps{
+                withSonarQubeEnv("My SonarQube Server") {
+                    sh "./gradlew sonarqube"
+                }
+            }       
+        }
+
         stage('QA'){
             steps{
 
@@ -75,21 +83,6 @@ pipeline {
                 echo 'Desplegando...'
                 sh 'docker-compose up -d'
             }
-        }
-
-        stage('SCM') {
-            steps {
-                checkout scm
-            }
-            
-        }
-
-        stage('SonarQube analysis') {
-            steps{
-                withSonarQubeEnv("My SonarQube Server") {
-                    sh "./gradlew sonarqube"
-                }
-            }       
         }
     }
 }
