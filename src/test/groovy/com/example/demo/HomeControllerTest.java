@@ -18,7 +18,7 @@ class HomeControllerTest {
     private static TestRestTemplate restTemplate;
 
     @Test
-    public void hola() throws Exception{
+    void hola(){
         assertThat(restTemplate.getForObject("http://localhost:"+port+"/hola", String.class))
                 .isEqualTo("Buenos dias!");
     }
