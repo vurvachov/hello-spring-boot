@@ -32,6 +32,12 @@ pipeline {
             }       
         }
 
+        stage('Probando Pitest'){
+            steps{
+                sh './gradlew pitest'
+            }
+        }
+
         stage('QA'){
             steps{
 
