@@ -7,7 +7,7 @@ pipeline {
 
     stages {
 
-        stage('Pruebas') {
+        /*stage('Pruebas') {
             steps {
                 
                 echo 'Realizando Pruebas...'
@@ -18,13 +18,13 @@ pipeline {
             }
             post{
                 always{
-                    junit '**/test/TEST-com.example.demo.DemoApplicationTests.xml'
-                    jacoco execPattern:'**/jacoco/*.exec'
+                    junit '/test/TEST-com.example.demo.DemoApplicationTests.xml' //Acordarse volver a poner ** antes de /test
+                    jacoco execPattern:'/jacoco/*.exec'  // Acordarse de poner ** antes de /jacoco
                 }                
             }
-        }
+        }*/
 
-        stage('Analysis'){
+        /*stage('Analysis'){
             parallel{
                 stage('SonarQube analysis') {
                     when { expression {true}}
@@ -48,8 +48,8 @@ pipeline {
                         always{
                             recordIssues(
                                 tools: [
-                                    pmdParser(pattern: '**/pmd/*.xml'),
-                                    spotBugs(useRankAsPriority: true, pattern: '**/spotbugs/*.xml')
+                                    pmdParser(pattern: '/pmd/*.xml'),  //acordarse de poner ** antes de /pmd
+                                    spotBugs(useRankAsPriority: true, pattern: '/spotbugs/*.xml') //acordarse de poner ** antes de /spotbugs
                                 ],
                                 enabledForFailure: true
                             )
@@ -57,11 +57,9 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
-    
-
-        stage('Lanzando Pitest'){
+        /*stage('Lanzando Pitest'){
             steps{
                 withGradle{
                     sh './gradlew pitest'
@@ -73,20 +71,29 @@ pipeline {
                 always{
                     recordIssues(
                         enabledForFailure: true, 
-                        tool: pit(pattern: '**/pitest/**/*.xml')
+                        tool: pit(pattern: '/pitest//*.xml') // Acoerdarse volver a poner ** antes de /pitest y despues de /pitest/
                     )
                 }
             }
-        }
+        }*/
 
-        /*stage('Construcción') {
+        stage('Construcción') {
             steps{
                 echo 'Construyendo...'
                 sh 'docker-compose build' 
             }    
         }
 
-        stage('Seguridad') {
+        stage('Login Docker'){
+            steps{
+                docker.withRegistry('http://10.250.11.3:5050', 'tokenGitLab') {
+                
+                sh 'docker tag hello-spring-testing:latest 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
+                sh 'docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
+            }
+        }
+
+        /*stage('Seguridad') {
             steps{
                 echo 'Comprobando seguridad...'
                 sh 'trivy image --format=json --output=trivy-image.json hello-spring-testing:latest'
@@ -101,9 +108,9 @@ pipeline {
                     )
                 }
             }
-        }
+        }*/
 
-        stage('Despliege') {
+        /*stage('Despliege') {
             steps {
                 echo 'Desplegando...'
                 sh 'docker-compose up -d'
