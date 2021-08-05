@@ -24,13 +24,42 @@ pipeline {
             }
         }
 
-        /*stage('SonarQube analysis') {
-            steps{
-                withSonarQubeEnv("sonarqube") {
-                    sh "./gradlew sonarqube"
+        stage('Analysis'){
+            parallel{
+                stage('SonarQube analysis') {
+                    when { expression {true}}
+                    steps{
+                        withSonarQubeEnv("sonarqube") {
+                            sh "./gradlew sonarqube"
+                        }
+                    }       
                 }
-            }       
-        }*/
+                stage('QA'){
+                    steps{
+
+                        echo 'Realizando Validacion...'
+
+                        withGradle{
+                            sh './gradlew check'
+                        }
+                    }
+
+                     post{
+                        always{
+                            recordIssues(
+                                tools: [
+                                    pmdParser(pattern: '**/pmd/*.xml'),
+                                    spotBugs(useRankAsPriority: true, pattern: '**/spotbugs/*.xml')
+                                ],
+                                enabledForFailure: true
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+    
 
         stage('Lanzando Pitest'){
             steps{
@@ -45,29 +74,6 @@ pipeline {
                     recordIssues(
                         enabledForFailure: true, 
                         tool: pit(pattern: '**/pitest/**/*.xml')
-                    )
-                }
-            }
-        }
-
-        stage('QA'){
-            steps{
-
-                echo 'Realizando Validacion...'
-
-                withGradle{
-                    sh './gradlew check'
-                }
-            }
-
-            post{
-                always{
-                    recordIssues(
-                            tools: [
-                                    pmdParser(pattern: '**/pmd/*.xml'),
-                                    spotBugs(useRankAsPriority: true, pattern: '**/spotbugs/*.xml')
-                            ],
-                            enabledForFailure: true
                     )
                 }
             }
