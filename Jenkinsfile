@@ -90,6 +90,8 @@ pipeline {
                 
                 sh 'docker tag hello-spring-testing:latest 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
                 sh 'docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
+                
+                }
             }
         }
 
