@@ -88,8 +88,11 @@ pipeline {
             steps{
                 script{
                     withDockerRegistry([url:'http://10.250.11.3:5050',credentialsId:'tokenDespliege']) {
-                        sh "docker tag hello-spring-testing:latest 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD_NUMBER}"
-                        sh "docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD_NUMBER}"
+                        sh "docker tag hello-spring-testing:latest 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD_TAG}"
+                        sh "docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD_TAG}"
+                        
+                        sh "docker image rm -f 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD_TAG}"
+                        sh "docker image rm -f hello-spring-testing:latest"
                     } 
                 }
 
