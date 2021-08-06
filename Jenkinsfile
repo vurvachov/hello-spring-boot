@@ -80,15 +80,15 @@ pipeline {
         stage('Construcción') {
             steps{
                 echo 'Construyendo...'
-                sh 'docker-compose build' 
-                sh 'docker tag hello-spring-testing:latest 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
+                sh 'docker-compose build'               
             }    
         }
 
         stage('Login Docker'){
             steps{
                 withDockerRegistry([url:'http://10.250.11.3:5050',credentialsId:'tokenDespliege']) {
-                    sh 'docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
+                    sh 'docker tag hello-spring-testing:latest 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.NUMBER}'
+                    sh 'docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.NUMBER}'
                 }                                                     
             }
         }
