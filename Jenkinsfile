@@ -88,7 +88,7 @@ pipeline {
         stage('Login Docker'){
             steps{
                 script{
-                    docker.withRegistry('http://10.250.11.3:5050', 'tokenGitLab') {
+                    docker.withRegistry('http://10.250.11.3:5050', 'tokenDespliege') {
                         docker.push("10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}")
                     }
                 }                                                      
