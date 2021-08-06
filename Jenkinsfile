@@ -87,11 +87,9 @@ pipeline {
 
         stage('Login Docker'){
             steps{
-                script{
-                    docker.withRegistry('http://10.250.11.3:5050', 'tokenDespliege') {
-                        docker.push("10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}")
-                    }
-                }                                                      
+                withDockerRegistry([url:'http://10.250.11.3:5050',credentialsId:'tokenDespliege']) {
+                    sh 'docker push 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD.ID}'
+                }                                                     
             }
         }
 
