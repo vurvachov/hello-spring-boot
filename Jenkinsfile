@@ -114,7 +114,7 @@ pipeline {
                             aggregatingResults: true
                     )
                 }
-            }
+            } #P
         }*/
 
         stage('Despliege') {
