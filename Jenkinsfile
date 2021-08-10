@@ -120,7 +120,7 @@ pipeline {
         stage('Despliege') {
             steps{
                 sshagent(credentials: ['appKey']) {
-                    sh 'sudo ssh app@10.250.11.3 "cd hello-spring-boot docker-compose pull && docker-compose up -d"'
+                    sh 'ssh app@10.250.11.3 "cd hello-spring-boot docker-compose pull && docker-compose up -d"'
                 }
             }  
         }
