@@ -114,13 +114,13 @@ pipeline {
                             aggregatingResults: true
                     )
                 }
-            }
+            } #aa
         }*/
 
         stage('Despliege') {
             steps{
                 sshagent(credentials: ['appKey']) {
-                    sh 'ssh -o StrictHostKeyChecking=no app@10.250.11.3 uptime'
+                    sh 'ssh -o StrictHostKeyChecking=no app@10.250.11.3 uptime' 
                     sh 'ssh app@10.250.11.3'
                     sh '/bin/sh -c cd hello-spring-boot && docker-compose pull && docker-compose up -d'
                 }
