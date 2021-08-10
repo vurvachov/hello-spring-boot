@@ -122,7 +122,7 @@ pipeline {
                 sshagent(credentials: ['appKey']) {
                     sh 'ssh -o StrictHostKeyChecking=no app@10.250.11.3 uptime'
                     sh 'ssh app@10.250.11.3'
-                    sh 'cd hello-spring-boot docker-compose pull && docker-compose up -d'
+                    sh 'cd hello-spring-boot && docker-compose pull && docker-compose up -d'
                 }
             }  
         }
