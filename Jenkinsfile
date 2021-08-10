@@ -77,7 +77,7 @@ pipeline {
             }
         }*/
 
-        stage('Construcción') {
+        /*stage('Construcción') {
             steps{
                 echo 'Construyendo...'
                 sh 'docker-compose build'               
@@ -98,7 +98,7 @@ pipeline {
 
             }
                                                                     
-        }
+        }*/
 
         /*stage('Seguridad') {
             steps{
@@ -122,7 +122,7 @@ pipeline {
                 sshagent(credentials: ['appKey']) {
                     sh 'ssh -o StrictHostKeyChecking=no app@10.250.11.3 uptime'
                     sh 'ssh app@10.250.11.3'
-                    sh '/bin/sh -c cd hello-spring-boot && docker-compose pull 10.250.11.3:5050/vurvachov/hello-spring-boot/hello-spring-testing:${env.BUILD_TAG} && docker-compose up -d'
+                    sh '/bin/sh -c cd hello-spring-boot && docker-compose pull && docker-compose up -d'
                 }
             }  
         }
