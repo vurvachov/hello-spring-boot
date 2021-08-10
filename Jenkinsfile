@@ -117,11 +117,10 @@ pipeline {
             }
         }*/
 
-        /*stage('Despliege') {
-            steps {
-                echo 'Desplegando...'
-                sh 'docker-compose up -d'
-            }
-        }*/
+        stage('Despliege') {
+            sshagent(credentials: ['appKey']) {
+            sh 'sudo ssh app@10.250.11.3 "cd hello-spring-boot docker-compose pull && docker-compose up -d"'
+          }
+        }
     }
 }
