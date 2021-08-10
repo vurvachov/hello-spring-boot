@@ -77,7 +77,7 @@ pipeline {
             }
         }*/
 
-        /*stage('Construcción') {
+        stage('Construcción') {
             steps{
                 echo 'Construyendo...'
                 sh 'docker-compose build'               
@@ -98,7 +98,7 @@ pipeline {
 
             }
                                                                     
-        }*/
+        }
 
         /*stage('Seguridad') {
             steps{
