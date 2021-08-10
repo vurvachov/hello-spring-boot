@@ -124,7 +124,7 @@ pipeline {
                     sh 'ssh app@10.250.11.3'
                     sh '/bin/sh -c cd hello-spring-boot && docker-compose pull && docker-compose up -d'*/
 
-                    sh "ssh -o StrictHostKeyChecking=no app@10.250.11.3 'cd hello-spring-boot && docker-compose pull && docker-compose up -d'"
+                    sh "ssh -o StrictHostKeyChecking=no app@10.250.11.3 'cd hello-spring-boot docker-compose pull && docker-compose up -d'"
                 }
             }  
         }
